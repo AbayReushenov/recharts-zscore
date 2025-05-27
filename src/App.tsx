@@ -6,7 +6,9 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <h1>Анализ данных с Z-Score</h1>
-      <ZScoreChart />
+      <div className='chart-container'>
+        <ZScoreChart />
+      </div>
     </div>
   );
 }
