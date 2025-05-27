@@ -30,16 +30,16 @@ export const calculateZScore = (data: DataPoint[], dataKey: string): DataPoint[]
 
 
 export const createSegmentedData = (data: DataPoint[], dataKey: string) => {
-  const normalData = data.map(item => ({
+  const normal = data.map(item => ({
     ...item,
     [dataKey]: item[`${dataKey}_isOutlier`] ? null : item[dataKey]
   }));
 
-  const outlierData = data.map(item => ({
+  const outliers = data.map(item => ({
     ...item,
     [dataKey]: item[`${dataKey}_isOutlier`] ? item[dataKey] : null
   }));
 
-  return { normalData, outlierData };
+  return { normal, outliers };
 };
 
