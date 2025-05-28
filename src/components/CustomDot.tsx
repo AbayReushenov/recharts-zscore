@@ -8,7 +8,7 @@ const CustomDot: React.FC<{
   dataKey: 'uv' | 'pv';
 }> = ({ cx, cy, payload, dataKey }) => {
   const isOutlier = payload[`${dataKey}_isOutlier`] ?? false;
-  const color = isOutlier ? '#ff0000' : dataKey === 'uv' ? '#8884d8' : '#82ca9d';
+  const color = isOutlier ? '#ff0000' : dataKey === 'pv' ? '#8884d8' : '#82ca9d';
 
   return (
     <circle

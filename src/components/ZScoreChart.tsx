@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-import { calculateZScore, createSegmentedData } from './helpers'
+import { calculateZScore } from './helpers'
 import { data } from './data'
 import CustomDot from './CustomDot'
 import { DataPoint } from './DataPoint'
@@ -11,9 +11,6 @@ const ZScoreChart: React.FC = () => {
         const withUV = calculateZScore(data, 'uv')
         return calculateZScore(withUV, 'pv')
     }, [])
-
-    const uvData = useMemo(() => createSegmentedData(processedData, 'uv'), [processedData])
-    const pvData = useMemo(() => createSegmentedData(processedData, 'pv'), [processedData])
 
     return (
         <ResponsiveContainer width='100%' height={350}>
@@ -39,36 +36,17 @@ const ZScoreChart: React.FC = () => {
                 />
                 <Legend />
                 <Line
+                    type="monotone"
+                    dataKey="pv"
+                    stroke="#8884d8"
+                    activeDot={{ r: 8 }}
+                    dot={<CustomDot dataKey="pv" payload={{} as DataPoint} />}
+                />
+                <Line
                   type='monotone'
-                  // data={uvData.normal}
                   dataKey="uv"
-                  stroke="#8884d8"
-                  dot={<CustomDot dataKey="uv" payload={{} as DataPoint} />}
-                />
-                <Line
-                  type="monotone"
-                  // data={uvData.outliers}
-                  dataKey="uv"
-                  // stroke="#ff0000"
-                  strokeWidth={2}
-                  dot={false}
-                />
-
-                <Line
-                  type="monotone"
-                  // data={pvData.normal}
-                  dataKey="pv"
                   stroke="#82ca9d"
-                  activeDot={{ r: 8 }}
-                  dot={<CustomDot dataKey="pv" payload={{} as DataPoint} />}
-                />
-                <Line
-                  type="monotone"
-                  // data={pvData.outliers}
-                  dataKey="pv"
-                  // stroke="#ff0000"
-                  strokeWidth={2}
-                  dot={false}
+                  dot={<CustomDot dataKey="uv" payload={{} as DataPoint} />}
                 />
             </LineChart>
         </ResponsiveContainer>
