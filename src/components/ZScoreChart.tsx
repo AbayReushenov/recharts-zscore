@@ -40,13 +40,14 @@ const ZScoreChart: React.FC = () => {
                     dataKey="pv"
                     stroke="#8884d8"
                     activeDot={{ r: 8 }}
-                    dot={<CustomDot dataKey="pv" payload={{} as DataPoint} />}
+                    dot={<CustomDot dataKey="pv" payload={{} as DataPoint} /> }
                 />
                 <Line
-                  type='monotone'
-                  dataKey="uv"
-                  stroke="#82ca9d"
-                  dot={<CustomDot dataKey="uv" payload={{} as DataPoint} />}
+                    type='monotone'
+                    dataKey="uv"
+                    stroke="#82ca9d"
+                    dot={<CustomDot dataKey="uv" payload={{} as DataPoint} />}
+
                 />
             </LineChart>
         </ResponsiveContainer>
