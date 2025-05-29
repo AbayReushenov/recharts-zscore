@@ -28,4 +28,18 @@ export const calculateZScore = (data: DataPoint[], dataKey: string): DataPoint[]
   }));
 };
 
+export const formatter = (processedData: DataPoint[]) => {
+  return (value: number, name: 'uv' | 'pv') => {
+    // Найти соответствующую точку данных
+    const dataPoint = processedData.find(d => d[name] === value);
+    // Получить Z-score
+    const zscore = dataPoint?.[`${name}_zscore`];
 
+    // Форматируем строку в зависимости от значения Z-score
+    const label = (typeof zscore === 'number' && Math.abs(zscore) > 1)
+      ? `${name} (Z-score: ${zscore.toFixed(2)})`
+      : `${name}`;
+
+    return [value, label];
+  };
+};

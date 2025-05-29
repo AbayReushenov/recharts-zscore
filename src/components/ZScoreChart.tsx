@@ -1,15 +1,17 @@
 import React, { useMemo } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-import { calculateZScore } from './helpers'
+import { calculateZScore, formatter } from './helpers'
 import { data } from './data'
 import CustomDot from './CustomDot'
 import { DataPoint } from './DataPoint'
+import ActiveCustomDot from './ActiveCustomDot';
+import { CIRCLE_RADIUS, COLOR, DATA_KEY } from './constants'
 
 const ZScoreChart: React.FC = () => {
     const processedData = useMemo(() => {
-        const withUV = calculateZScore(data, 'uv')
-        return calculateZScore(withUV, 'pv')
+        const withUV = calculateZScore(data, DATA_KEY.UV)
+        return calculateZScore(withUV, DATA_KEY.PV)
     }, [])
 
     return (
@@ -24,29 +26,25 @@ const ZScoreChart: React.FC = () => {
                 }}
             >
                 <CartesianGrid strokeDasharray='3 3' />
-                <XAxis dataKey='name' />
+                <XAxis dataKey={DATA_KEY.NAME} />
                 <YAxis />
                 <Tooltip
-                    formatter={(value: number, name: 'uv' | 'pv') => [
-                        value,
-                        `${name} (Z-score: ${processedData
-                            .find((d) => d[name] === value)
-                            ?.[`${name}_zscore`]?.toFixed(2)})`,
-                    ]}
+                    formatter={formatter(processedData)}
                 />
                 <Legend />
                 <Line
                     type="monotone"
-                    dataKey="pv"
-                    stroke="#8884d8"
-                    activeDot={{ r: 8 }}
+                    dataKey={DATA_KEY.PV}
+                    stroke={COLOR.PV}
+                    activeDot={<ActiveCustomDot r={CIRCLE_RADIUS.OUTLIER} dataKey="pv" payload={{} as DataPoint } />}
                     dot={<CustomDot dataKey="pv" payload={{} as DataPoint} /> }
                 />
                 <Line
                     type='monotone'
-                    dataKey="uv"
-                    stroke="#82ca9d"
+                    dataKey={DATA_KEY.UV}
+                    stroke={COLOR.UV}
                     dot={<CustomDot dataKey="uv" payload={{} as DataPoint} />}
+                    activeDot={<ActiveCustomDot dataKey="uv" payload={{} as DataPoint } />}
 
                 />
             </LineChart>
