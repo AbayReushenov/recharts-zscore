@@ -1,5 +1,6 @@
 {
   "name": "recharts-zscore",
+  "homepage": "https://abayreushenov.github.io/recharts-zscore",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/d3-shape": "^3.1.7"
+    "@types/d3-shape": "^3.1.7",
+    "gh-pages": "^6.3.0"
   }
 }
