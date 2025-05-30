@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/recharts-zscore/static/css/main.964fdded.css",
+    "main.js": "/recharts-zscore/static/js/main.b2ab7f94.js",
+    "static/js/453.81ff06ff.chunk.js": "/recharts-zscore/static/js/453.81ff06ff.chunk.js",
+    "index.html": "/recharts-zscore/index.html",
+    "main.964fdded.css.map": "/recharts-zscore/static/css/main.964fdded.css.map",
+    "main.b2ab7f94.js.map": "/recharts-zscore/static/js/main.b2ab7f94.js.map",
+    "453.81ff06ff.chunk.js.map": "/recharts-zscore/static/js/453.81ff06ff.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.964fdded.css",
+    "static/js/main.b2ab7f94.js"
+  ]
+}
