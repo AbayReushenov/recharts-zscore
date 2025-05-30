@@ -45,7 +45,6 @@ const ZScoreChart: React.FC = () => {
                     stroke={COLOR.UV}
                     dot={<CustomDot dataKey="uv" payload={{} as DataPoint} />}
                     activeDot={<ActiveCustomDot dataKey="uv" payload={{} as DataPoint } />}
-
                 />
             </LineChart>
         </ResponsiveContainer>
